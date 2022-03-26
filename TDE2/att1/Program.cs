@@ -14,9 +14,10 @@ namespace att1
 
         static void Main(string[] args)
         {
-            Produto arroz = new Produto(001, "Arroz", 67);
-            Produto cafe = new Produto(002, "Café", 86);
-            Produto agua = new Produto(003, "Água", 86);
+            Produto arroz = new Produto(001, "Arroz", 67, 12.99);
+            Produto cafe = new Produto(002, "Café", 86, 17.99);
+            Produto agua = new Produto(003, "Água", 86, 1.99);
+            Produto acucar = new Produto(004, "Açucar", 32, 5.99);
 
             Cliente Cjoel = new Cliente(1, "Joel");
 
@@ -30,10 +31,11 @@ namespace att1
                 new List<Produto>()
                 {
                     arroz,
-                    cafe
+                    acucar
                 });
 
             pedidoDoJoel.Produtos.Add(agua);
+            VeriEst(agua, 3);
             pedidoDoJoel.FormaPagamentos.Add(fDinheiro);
             pedidoDoJoel.FormaPagamentos.Add(fCartao);
 
@@ -46,11 +48,13 @@ namespace att1
         {
             Console.WriteLine("Pedido do " + pedidoDoJoel.Cliente.Nome);
             Console.WriteLine("Data " + pedidoDoJoel.Data.ToString("dd/MM/yyyy"));
+            Console.WriteLine("Código do cliente: " + pedidoDoJoel.Id);
             Console.WriteLine("--------------------------");
 
+            Console.WriteLine("Produtos:");
             foreach (var item in pedidoDoJoel.Produtos)
             {
-                Console.WriteLine(item.Nome);
+                Console.WriteLine( "Código do produto: " + item.Id + " // Nome do produto " + item.Nome);
             }
 
              foreach (var item in pedidoDoJoel.FormaPagamentos)
@@ -58,6 +62,22 @@ namespace att1
                 Console.WriteLine(item.Nome);
             }
         }
+
+        private static Boolean VeriEst(Produto produto, int quant)
+        {
+            if(produto.QuantEstoque >= quant){
+                return true;
+            } else{
+                return false;
+            }
+        }
+
+        private static void Total(Produto produto)
+        {
+            
+        }
+
+
 
     }
 }

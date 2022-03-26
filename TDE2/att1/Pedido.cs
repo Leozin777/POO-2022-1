@@ -11,7 +11,8 @@ namespace att1
             Data = data;
             Cliente = cliente;
             Produtos = produtos;
-            FormaPagamentos = new List<FormaPagamento>(); 
+            FormaPagamentos = new List<FormaPagamento>();
+             
         }
 
         public int Id { get; private set; }
