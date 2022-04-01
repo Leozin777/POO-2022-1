@@ -9,8 +9,6 @@ namespace AgendaTel
 {
     class Program
     {
-
-        static Agenda agendaTelefonica;
         static async void Main(string[] args)
         {
             Contato leo = new Contato(100, "Leonardo", 5183252525);
@@ -18,7 +16,7 @@ namespace AgendaTel
             Contato paulo = new Contato(103, "Paulo", 5182239774);
             Contato joana = new Contato(104, "Joana", 5182256774);
 
-            agendaTelefonica = new Agenda(
+            Agenda agendaTelefonica = new Agenda(
                 new List<Contato>()
                 {
                     leo,
@@ -26,9 +24,6 @@ namespace AgendaTel
                     paulo
                 }
             );
-
-            agendaTelefonica.contato.Add(joana);
-            agendaTelefonica.buscarNome("Joao", agendaTelefonica.contato);
 
             
         }
