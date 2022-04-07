@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AgendaTel
+namespace AgendaTel.Domain
 {
     public class Agenda
     {

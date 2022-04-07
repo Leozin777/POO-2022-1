@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AgendaTel
+namespace AgendaTel.Domain
 {
     public class Contato
     {
@@ -15,5 +15,7 @@ namespace AgendaTel
         public String Nome { get; private set; }
         public long Num { get; set; }
 
+
+        
     }
 }
