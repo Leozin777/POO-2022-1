@@ -14,7 +14,9 @@ namespace AgendaContatos.Controllers
             while(operador != "0")
             {
                 Console.WriteLine("Digite 1 para add um novo contato");
+                Console.WriteLine("Digite 2 para listar todos os contatos");
                 Console.WriteLine("Digite 0 para sair da aplicação");
+                
 
 
                 operador = Console.ReadLine();
@@ -35,6 +37,11 @@ namespace AgendaContatos.Controllers
                         String retorna = controle.CriarContato(nome, tel);
 
                         Console.WriteLine(retorna);
+                    break;
+
+                    case "2":
+                        var retorna2 = controle.ListarContatos();
+                        Console.WriteLine(retorna2);
                     break;
 
                     default:
