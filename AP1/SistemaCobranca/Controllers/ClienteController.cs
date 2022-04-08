@@ -18,6 +18,7 @@ namespace SistemaCobranca.Controllers
                 Console.WriteLine("Digite 2 para listar os clientes");
                 Console.WriteLine("Digite 3 para buscar um cliente por Id");
                 Console.WriteLine("Digite 4 para buscar um cliente por nome");
+                Console.WriteLine("Digite 5 para editar um cliente");
                 Console.WriteLine("Digite 0 para sair do programa");
 
                 Operador = Console.ReadLine();
@@ -56,6 +57,21 @@ namespace SistemaCobranca.Controllers
                         Console.WriteLine("Digite o nome do cliente que deseja buscar");
                         String busca = Console.ReadLine();
                         Console.WriteLine(controle.BuscarNome(busca));
+                    break;
+
+                    case "5":
+                        Console.WriteLine("Digite o id do cliente que deseja editar");
+                        int id2 = int.Parse(Console.ReadLine());
+                        
+                        Console.WriteLine("Digite o nome do cliente");
+                        String nome2 = Console.ReadLine();
+
+                        Console.WriteLine("Digite o telefone do cliente");
+                        String telefone2 = Console.ReadLine();
+
+                        String retorno2 = controle.EditarCliente(nome2, id2, telefone2);
+
+                        Console.WriteLine(retorno2);
                     break;
 
                     default:

@@ -28,6 +28,14 @@ namespace SistemaCobranca.Data
             return listaDeCliente.Find(p => p.Nome == nomeCliente);
         }
 
+        public void Update(Cliente cliente)
+        {
+            var clienteEditado = GetById(cliente.Id);
+
+            clienteEditado.Nome = cliente.Nome;
+            clienteEditado.Telefone = cliente.Telefone;
+        }
+
         public void Delete(Cliente cliente)
         {
             listaDeCliente.Remove(cliente);

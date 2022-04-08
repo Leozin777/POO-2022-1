@@ -9,14 +9,14 @@ namespace SistemaCobranca.Services
     {
         ClienteRepository repositorioCliente = new ClienteRepository();
 
-
-        public int RetornaProxId()
+        public int TamaLista()
         {
-            return repositorioCliente.GetAll().Count + 1;
+            return repositorioCliente.GetAll().Count;
         }
         public String CriarCliente(String Nome, String Telefone)
         {
-            repositorioCliente.Save(new Cliente(RetornaProxId(), Nome, Telefone));
+            int id = TamaLista() + 1;
+            repositorioCliente.Save(new Cliente(id, Nome, Telefone));
             return "Cliente adicionado com sucesso";
         }
 
@@ -32,21 +32,65 @@ namespace SistemaCobranca.Services
             {
                 foreach (Cliente cliente in listaDeCliente)
                 {
-                    builder.AppendLine($"Nome: {cliente.Nome}   Id: {cliente.Id}");
+                    builder.AppendLine($"Nome: {cliente.Nome}   Id: {cliente.Id} Telefone {cliente.Telefone}");
                 }
             }
 
             return builder.ToString();
         }
 
-        public Cliente BuscarId(int id)
+        public String BuscarId(int id)
         {
-            return repositorioCliente.GetById(id); 
+            var builder = new StringBuilder();
+            Cliente cliente = repositorioCliente.GetById(id); 
+            
+            if(cliente is Cliente)
+                builder.AppendLine($"Nome: {cliente.Nome} Id: {cliente.Id} Telefone: {cliente.Telefone}");
+            else
+            {
+                builder.AppendLine("Esse cliente não existe");
+            }
+
+            return builder.ToString();
+
         }
 
-        public Cliente BuscarNome(String nome)
+        public String BuscarNome(String nome)
         {
-            return repositorioCliente.GetByName(nome); 
+            var builder = new StringBuilder();
+            Cliente cliente = repositorioCliente.GetByName(nome); 
+            
+            if(cliente is Cliente)
+                builder.AppendLine($"Nome: {cliente.Nome} Id: {cliente.Id} Telefone: {cliente.Telefone}");
+            else
+            {
+                builder.AppendLine("Esse cliente não existe");
+            }
+
+            return builder.ToString();
+        }
+
+        public String EditarCliente(String nome, int id, String telefone)
+        {
+            String retorno;
+
+
+            if(TamaLista().Equals(0))
+            {
+                retorno = "Lista vazia, para poder editar um cliente é necessário ter um cliente cadastrado.";
+                return retorno;
+            }
+            var cliente = repositorioCliente.GetById(id);
+
+            if(cliente == null)
+            {
+                retorno = "Cliente não encontrado";
+                return retorno;
+            }
+
+            repositorioCliente.Update(new Cliente(id, nome, telefone));
+            retorno = "Cliente editado com sucesso!!!";
+            return retorno;
         }
     }
 }
