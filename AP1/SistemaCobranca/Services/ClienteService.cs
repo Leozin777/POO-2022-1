@@ -42,7 +42,7 @@ namespace SistemaCobranca.Services
         public String BuscarId(int id)
         {
             var builder = new StringBuilder();
-            Cliente cliente = repositorioCliente.GetById(id); 
+            var cliente = repositorioCliente.GetById(id); 
             
             if(cliente is Cliente)
                 builder.AppendLine($"Nome: {cliente.Nome} Id: {cliente.Id} Telefone: {cliente.Telefone}");
@@ -58,7 +58,7 @@ namespace SistemaCobranca.Services
         public String BuscarNome(String nome)
         {
             var builder = new StringBuilder();
-            Cliente cliente = repositorioCliente.GetByName(nome); 
+            var cliente = repositorioCliente.GetByName(nome); 
             
             if(cliente is Cliente)
                 builder.AppendLine($"Nome: {cliente.Nome} Id: {cliente.Id} Telefone: {cliente.Telefone}");
@@ -91,6 +91,17 @@ namespace SistemaCobranca.Services
             repositorioCliente.Update(new Cliente(id, nome, telefone));
             retorno = "Cliente editado com sucesso!!!";
             return retorno;
+        }
+
+        public String ExcluirCliente(int id)
+        {
+            String retorno3;
+            var clienteExcluir = repositorioCliente.GetById(id);
+            repositorioCliente.Delete(clienteExcluir);
+
+            retorno3 = "Cliente excluido";
+
+            return retorno3;
         }
     }
 }

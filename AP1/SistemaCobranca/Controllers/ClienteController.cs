@@ -19,6 +19,7 @@ namespace SistemaCobranca.Controllers
                 Console.WriteLine("Digite 3 para buscar um cliente por Id");
                 Console.WriteLine("Digite 4 para buscar um cliente por nome");
                 Console.WriteLine("Digite 5 para editar um cliente");
+                Console.WriteLine("Digite 6 para excluir um cliente");
                 Console.WriteLine("Digite 0 para sair do programa");
 
                 Operador = Console.ReadLine();
@@ -72,6 +73,13 @@ namespace SistemaCobranca.Controllers
                         String retorno2 = controle.EditarCliente(nome2, id2, telefone2);
 
                         Console.WriteLine(retorno2);
+                    break;
+
+                    case "6":
+                        Console.WriteLine("Digite o id do cliente que você deseja excluir");
+                        int idExcluido = int.Parse(Console.ReadLine());
+                        var retorno3 = controle.ExcluirCliente(idExcluido);
+                        Console.WriteLine(retorno3);
                     break;
 
                     default:
