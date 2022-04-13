@@ -37,7 +37,8 @@ namespace SistemaCobranca.Controllers
                         Console.WriteLine("Digite o telefone do cliente");
                         String telefone = Console.ReadLine();
 
-                        String retorno = controle.CriarCliente(nome, telefone);
+                        Cobranca cobranca = new Cobranca(1, new DateTime(2022, 5, 2), new DateTime(2022, 12, 3), 100.50);
+                        String retorno = controle.CriarCliente(nome, telefone, cobranca);
 
                         Console.WriteLine(retorno);
                     break;
