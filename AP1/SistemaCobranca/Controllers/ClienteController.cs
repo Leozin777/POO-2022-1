@@ -6,7 +6,9 @@ namespace SistemaCobranca.Controllers
 {
     public class ClienteController
     {
-        ClienteService controle = new ClienteService();
+        ClienteService controleCliente = new ClienteService();
+        CobrancaService controleCobranca = new CobrancaService();
+
 
         public void Menu()
         {
@@ -20,7 +22,9 @@ namespace SistemaCobranca.Controllers
                 Console.WriteLine("Digite 4 para buscar um cliente por nome");
                 Console.WriteLine("Digite 5 para editar um cliente");
                 Console.WriteLine("Digite 6 para excluir um cliente");
+                Console.WriteLine("Digte 7 para adicionar uma cobrança");
                 Console.WriteLine("Digite 0 para sair do programa");
+                
 
                 Operador = Console.ReadLine();
 
@@ -36,15 +40,13 @@ namespace SistemaCobranca.Controllers
 
                         Console.WriteLine("Digite o telefone do cliente");
                         String telefone = Console.ReadLine();
-
-                        Cobranca cobranca = new Cobranca(1, new DateTime(2022, 5, 2), new DateTime(2022, 12, 3), 100.50);
-                        String retorno = controle.CriarCliente(nome, telefone, cobranca);
+                        String retorno = controleCliente.CriarCliente(nome, telefone);
 
                         Console.WriteLine(retorno);
                     break;
 
                     case "2":
-                        var lista = controle.ListarCliente();
+                        var lista = controleCliente.ListarCliente();
 
                         Console.WriteLine(lista);
                     break;
@@ -52,13 +54,13 @@ namespace SistemaCobranca.Controllers
                     case "3":
                         Console.WriteLine("Digite o Id do cliente que deseja buscar");
                         int id = int.Parse(Console.ReadLine());
-                        Console.WriteLine(controle.BuscarId(id));
+                        Console.WriteLine(controleCliente.BuscarId(id));
                     break;
 
                     case "4":
                         Console.WriteLine("Digite o nome do cliente que deseja buscar");
                         String busca = Console.ReadLine();
-                        Console.WriteLine(controle.BuscarNome(busca));
+                        Console.WriteLine(controleCliente.BuscarNome(busca));
                     break;
 
                     case "5":
@@ -71,7 +73,7 @@ namespace SistemaCobranca.Controllers
                         Console.WriteLine("Digite o telefone do cliente");
                         String telefone2 = Console.ReadLine();
 
-                        String retorno2 = controle.EditarCliente(nome2, id2, telefone2);
+                        String retorno2 = controleCliente.EditarCliente(nome2, id2, telefone2);
 
                         Console.WriteLine(retorno2);
                     break;
@@ -79,8 +81,29 @@ namespace SistemaCobranca.Controllers
                     case "6":
                         Console.WriteLine("Digite o id do cliente que você deseja excluir");
                         int idExcluido = int.Parse(Console.ReadLine());
-                        var retorno3 = controle.ExcluirCliente(idExcluido);
+                        var retorno3 = controleCliente.ExcluirCliente(idExcluido);
                         Console.WriteLine(retorno3);
+                    break;
+
+                    case "7":
+                        DateTime dataEmissao = DateTime.Now;
+
+                        Console.WriteLine("Digte a data de vencimento da cobrança");
+                        DateTime dataVenc = DateTime.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Digite o valor da cobrança");
+                        double valor = Double.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Digte o Id do cliente que vai receber a cobrança");
+                        int idC= int.Parse(Console.ReadLine());
+
+                        controleCobranca.AddCobranca(dataEmissao, dataVenc, valor, idC);
+                    break;    
+
+                    case "8":
+                        var lista2 = controleCobranca.ListarCobranca();
+
+                        Console.WriteLine(lista2);
                     break;
 
                     default:

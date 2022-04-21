@@ -13,11 +13,10 @@ namespace SistemaCobranca.Services
         {
             return repositorioCliente.GetAll().Count;
         }
-        public String CriarCliente(String Nome, String Telefone, Cobranca cobranca)
+        public String CriarCliente(String Nome, String Telefone)
         {
             int id = TamaLista() + 1;
             Cliente cliente = new Cliente(id, Nome, Telefone);
-            cliente.Cobrancas.Add(cobranca);
             repositorioCliente.Save(cliente);
             return "Cliente adicionado com sucesso";
         }
@@ -34,7 +33,7 @@ namespace SistemaCobranca.Services
             {
                 foreach (Cliente cliente in listaDeCliente)
                 {
-                    builder.AppendLine($"Nome: {cliente.Nome}   Id: {cliente.Id} Telefone {cliente.Telefone} Cobrancas: {String.Join(", ", cliente.Cobrancas)}");
+                    builder.AppendLine($"Nome: {cliente.Nome} || Id: {cliente.Id} || Telefone {cliente.Telefone}");
                 }
             }
 
