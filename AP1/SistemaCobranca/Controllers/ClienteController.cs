@@ -23,6 +23,8 @@ namespace SistemaCobranca.Controllers
                 Console.WriteLine("Digite 5 para editar um cliente");
                 Console.WriteLine("Digite 6 para excluir um cliente");
                 Console.WriteLine("Digte 7 para adicionar uma cobrança");
+                Console.WriteLine("Digte 8 para listar as cobranças");
+
                 Console.WriteLine("Digite 0 para sair do programa");
                 
 
@@ -97,7 +99,8 @@ namespace SistemaCobranca.Controllers
                         Console.WriteLine("Digte o Id do cliente que vai receber a cobrança");
                         int idC= int.Parse(Console.ReadLine());
 
-                        controleCobranca.AddCobranca(dataEmissao, dataVenc, valor, idC);
+                        var retorno4 = controleCobranca.AddCobranca(dataEmissao, dataVenc, valor, idC);
+                        Console.WriteLine(retorno4);
                     break;    
 
                     case "8":
