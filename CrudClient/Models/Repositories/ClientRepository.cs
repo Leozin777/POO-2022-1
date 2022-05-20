@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using CrudClient.Models.Domain;
 
 namespace CrudClient.Models.Repositories
@@ -17,7 +15,7 @@ namespace CrudClient.Models.Repositories
             context.SaveChanges();
         }
 
-        public void Delete(int id) //perguntar pro cássio
+        public void Delete(int id)
         {
             throw new System.NotImplementedException();
         }
@@ -32,9 +30,12 @@ namespace CrudClient.Models.Repositories
             return context.Client.SingleOrDefault(i => i.Id == id);
         }
 
-        public void Update(Client cliente) //perguntar pro cássio
+        public void Update(Client client)
         {
-            throw new System.NotImplementedException();
+            var edit = GetById(client.Id);
+
+            edit.Name = client.Name;
+            edit.PhoneNumber = client.PhoneNumber;
         }
     }
 }

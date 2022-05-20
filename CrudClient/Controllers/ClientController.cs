@@ -27,5 +27,13 @@ namespace CrudClient.Controllers
             repository.Create(client);
             return Ok(client);
         }
+
+        [HttpPut()]
+        public IActionResult Put([FromBody]Client client)
+        {
+            repository.Update(client);
+            return Ok(client);
+        }
+            
     }
 }
