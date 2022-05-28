@@ -32,10 +32,8 @@ namespace CrudClient.Models.Repositories
 
         public void Update(Client client)
         {
-            var edit = GetById(client.Id);
-
-            edit.Name = client.Name;
-            edit.PhoneNumber = client.PhoneNumber;
+            context.Client.Update(client);
+            context.SaveChanges();
         }
     }
 }

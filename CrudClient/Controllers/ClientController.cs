@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using CrudClient.Models.Domain;
 using CrudClient.Models.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +20,12 @@ namespace CrudClient.Controllers
             return repository.GetAll();
         }
 
+        [HttpGet("{id}")]
+        public Client Get(int id)
+        {
+            return (repository.GetById(id));
+        }
+
         [HttpPost()]
         public IActionResult Post([FromBody]Client client)
         {
@@ -28,12 +33,13 @@ namespace CrudClient.Controllers
             return Ok(client);
         }
 
-        [HttpPut()]
-        public IActionResult Put([FromBody]Client client)
+        [HttpPut]
+        public ActionResult UpdateClient([FromBody] Client clientToBeUpdated)
         {
-            repository.Update(client);
-            return Ok(client);
+            repository.Update(clientToBeUpdated);
+            return Ok("Client Updated.");
         }
-            
+        
+                
     }
 }
