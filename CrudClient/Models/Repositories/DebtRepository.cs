@@ -6,6 +6,11 @@ namespace CrudClient.Models.Repositories
     {
         private DataContext context;
 
+        public DebtRepository (DataContext context)
+        {
+            this.context = context;
+        }
+
         public void Create(Debt t)
         {
             t.Client = context.Client.SingleOrDefault(x=>x.Id == t.Client.Id);
@@ -20,8 +25,7 @@ namespace CrudClient.Models.Repositories
 
         public List<Debt> GetAll()
         {
-            return context.Debts.Include(c=>c.Client).Include(p=>p.Client.Debt).ToList();
-            
+           throw new NotImplementedException();
         }
 
         public Debt GetById(int id)
