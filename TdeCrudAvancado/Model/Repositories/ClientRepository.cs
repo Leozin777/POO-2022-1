@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TdeCrudAvancado.Model.Domain;
 
 namespace TdeCrudAvancado.Model.Repositories
@@ -17,7 +13,8 @@ namespace TdeCrudAvancado.Model.Repositories
 
         public void Create(Client t)
         {
-            throw new NotImplementedException();
+            context.Add(t);
+            context.SaveChanges();
         }
 
         public void Delete(int id)
@@ -27,12 +24,12 @@ namespace TdeCrudAvancado.Model.Repositories
 
         public List<Client> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Client.ToList();
         }
 
         public Client GetById(int id)
         {
-            throw new NotImplementedException();
+            return context.Client.SingleOrDefault(i => i.Id == id);
         }
 
         public void Update(Client t)

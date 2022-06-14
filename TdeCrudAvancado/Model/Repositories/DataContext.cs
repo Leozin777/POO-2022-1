@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TdeCrudAvancado.Model.Domain;
 
@@ -9,10 +5,10 @@ namespace TdeCrudAvancado.Model.Repositories
 {
     public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions options) : base(options)
-        {
-        }
+    public DataContext(DbContextOptions<DataContext> opts)
+            :base(opts)
+        {}
 
-        DbSet<Client> Clients { get; set; }
+    public DbSet<Client> Client { get; set; }
     }
 }

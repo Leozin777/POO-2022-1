@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using TdeCrudAvancado.Model.Domain;
+using TdeCrudAvancado.Model.Repositories;
 
 namespace TdeCrudAvancado.Controllers
 {
@@ -6,10 +8,16 @@ namespace TdeCrudAvancado.Controllers
     [Route("api/[controller]")]
     public class ClientController : ControllerBase
     {
-        [HttpGet]
-        public string Get()
+        private readonly IClientRepository repository;
+        public  ClientController(IClientRepository repository)
         {
-            return "ok";
+            this.repository = repository;
+        }
+
+        [HttpGet()]
+        public IEnumerable<Client> Get()
+        {
+            return repository.GetAll();
         }
     }
 }
