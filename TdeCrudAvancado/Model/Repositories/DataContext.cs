@@ -10,7 +10,7 @@ namespace TdeCrudAvancado.Model.Repositories
                 :base(opts)
             {}
 
-        public DbSet<Client> Client { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

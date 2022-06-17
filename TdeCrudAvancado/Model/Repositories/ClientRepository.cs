@@ -6,7 +6,6 @@ namespace TdeCrudAvancado.Model.Repositories
     public class ClientRepository : IClientRepository
     {
         private DataContext context;
-
         public ClientRepository(DataContext context)
         {
             this.context = context;
@@ -19,25 +18,25 @@ namespace TdeCrudAvancado.Model.Repositories
 
         public bool Delete(int id)
         {
-            var client = context.Client.FirstOrDefault(x => x.Id == id);
+            var client = context.Clients.FirstOrDefault(x => x.Id == id);
 
             if(client == null)
                 return false;
             else
             {
-                context.Client.Remove(client);
+                context.Clients.Remove(client);
                 return true;
             }
         }
 
         public async Task<List<Client>> getAll()
         {
-            return await context.Client.ToListAsync();
+            return await context.Clients.ToListAsync();
         }
 
         public async Task<Client> getById(int id)
         {
-            return await context.Client.SingleOrDefaultAsync(x => x.Id == id);
+            return await context.Clients.SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public void Update(Client t)
