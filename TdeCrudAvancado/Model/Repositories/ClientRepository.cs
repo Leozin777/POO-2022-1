@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TdeCrudAvancado.Model.Domain;
 
 namespace TdeCrudAvancado.Model.Repositories
@@ -14,27 +15,34 @@ namespace TdeCrudAvancado.Model.Repositories
         public void Create(Client t)
         {
             context.Add(t);
-            context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var client = context.Client.FirstOrDefault(x => x.Id == id);
+
+            if(client == null)
+                return false;
+            else
+            {
+                context.Client.Remove(client);
+                return true;
+            }
         }
 
-        public List<Client> GetAll()
+        public async Task<List<Client>> getAll()
         {
-            return context.Client.ToList();
+            return await context.Client.ToListAsync();
         }
 
-        public Client GetById(int id)
+        public async Task<Client> getById(int id)
         {
-            return context.Client.SingleOrDefault(i => i.Id == id);
+            return await context.Client.SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public void Update(Client t)
         {
-            throw new NotImplementedException();
+            context.Entry(t).State = EntityState.Modified;
         }
     }
 }

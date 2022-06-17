@@ -1,11 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TdeCrudAvancado.Model.Domain;
 
 namespace TdeCrudAvancado.Model.Repositories
 {
-    public interface IClientRepository : IBaseRepostory<Client>
-    {}
+    public interface IClientRepository
+    {
+        Task<Client> getById(int id);
+        Task<List<Client>> getAll();
+        void Create(Client t);
+        bool Delete(int t);
+        void Update(Client t);
+    }
 }

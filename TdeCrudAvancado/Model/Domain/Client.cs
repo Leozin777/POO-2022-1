@@ -7,8 +7,8 @@ namespace TdeCrudAvancado.Model.Domain
         {
             Id = id;
             Name = name;
-            PhoneNumber = phoneNumber;
             BirthDay = birthDay;
+            PhoneNumber = phoneNumber;
         }
 
         public int Id { get; set; }

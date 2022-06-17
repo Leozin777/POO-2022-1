@@ -4,7 +4,7 @@ namespace TdeCrudAvancado.Model.Repositories
     where T:class
     {
         T GetById(int id);
-        List<T>GetAll();
+        Task<T>GetAll();
         void Create(T t);
         void Update(T t);
         void Delete(int id);

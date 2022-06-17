@@ -6,31 +6,30 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace TdeCrudAvancado.Migrations
 {
-    public partial class ClientMigration : Migration
+    public partial class firstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Clients",
+                name: "client",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
-                    BirthDay = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Balance = table.Column<double>(type: "double precision", nullable: false)
+                    name = table.Column<string>(type: "VARCHAR", maxLength: 80, nullable: false),
+                    phoneNumber = table.Column<string>(type: "VARCHAR", maxLength: 20, nullable: false),
+                    birthDay = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.Id);
+                    table.PrimaryKey("PK_client", x => x.id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Clients");
+                name: "client");
         }
     }
 }
